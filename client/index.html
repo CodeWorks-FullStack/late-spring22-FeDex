@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" href="https://bcw.blob.core.windows.net/public/img/9977764104160066">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link rel="stylesheet" href="//cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="assets/style/main.css">
+  <title>FeD-Ex</title>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-dark navbar-expand bg-warning text-dark">
+      <a class="navbar-brand" href="#">
+        <img src="https://cdn4.iconfinder.com/data/icons/animals-57/500/cat_animal_-512.png" height="45" alt=""
+          loading="lazy">
+        <span class="ml-2 text-dark">FeD-EX</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <!-- NAVLINKS -->
+        </div>
+      </div>
+      <div class="flex-grow-1 justify-content-end align-items-center d-flex" id="authstate"></div>
+    </nav>
+  </header>
+  <main id="app">
+    <button class="btn btn-primary m-2 position-absolute z-2" type="button" data-bs-toggle="offcanvas"
+      data-bs-target="#ships-list">
+      <i class="mdi mdi-rocket"></i>
+    </button>
+    <div class="container-fluid">
+      <div class="row my-3 justify-content-center">
+        <div id="ship-data" class="col-6 text-center">
+        </div>
+        <div class="col-8">
+          <h5>Manifest</h5>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- SECTION Off-Canvas -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="ships-list" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5>Package Management Dashboard</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column justify-content-between">
+      <div>
+        <p class="selectable p-2 text-danger">Unassigned Packages</p>
+        <h5>Ships</h5>
+        <div class="p-1" id="ships">
+        </div>
+      </div>
+      <button class="btn btn-outline-success" onclick="app.shipsController.openShipModal()"><i
+          class="mdi mdi-plus"></i></button>
+    </div>
+  </div>
+  <!-- SECTION Modal -->
+  <div class="modal fade" id="form-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-title-slot">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modal-body-slot"> Body </div>
+      </div>
+    </div>
+  </div>
+  <footer class="container-fluid bg-dark text-light">
+    <div class="row text-center">
+      <div class="col">
+        <p><small>Made with 💖 by CodeWorks</small></p>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.auth0.com/js/auth0-spa-js/1.15/auth0-spa-js.production.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/jakeoverall/auth0provider-client/browser/AuthProvider.browser.js"></script>
+  <script src="https://cdn.socket.io/4.1.1/socket.io.min.js"
+    integrity="sha384-cdrFIqe3RasCMNE0jeFG9xJHog/tgOVC1E9Lzve8LQN1g5WUHo0Kvk1mawWjxX7a"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+    crossorigin="anonymous"></script>
+  <script src="app/main.js" type="module"></script>
+</body>
+
+</html>
