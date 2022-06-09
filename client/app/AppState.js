@@ -8,7 +8,9 @@ class AppState extends EventEmitter {
   /** @type {import('./Models/Ship').Ship[]} */
   ships = []
   /** @type {import('./Models/Ship').Ship} */
-  activeShip= null
+  activeShip = null
+  /** @type {import('./Models/Package').Package[]} */
+  packages = []
 }
 
 export const ProxyState = new Proxy(new AppState(), {

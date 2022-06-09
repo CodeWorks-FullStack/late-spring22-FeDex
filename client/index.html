@@ -44,6 +44,7 @@
         </div>
         <div class="col-8">
           <h5>Manifest</h5>
+          <div id="packages"></div>
         </div>
       </div>
     </div>
@@ -56,7 +57,8 @@
     </div>
     <div class="offcanvas-body d-flex flex-column justify-content-between">
       <div>
-        <p class="selectable p-2 text-danger">Unassigned Packages</p>
+        <p class="selectable p-2 text-danger" onclick="app.packagesController.getAllUnassignedPackages()">Unassigned
+          Packages</p>
         <h5>Ships</h5>
         <div class="p-1" id="ships">
         </div>

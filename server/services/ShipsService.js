@@ -23,7 +23,7 @@ class ShipsService {
     if (ship.creatorId.toString() !== userId) {
       throw new Forbidden('You lack the proper documents to complete this action')
     }
-    ship.remove()
+    await ship.remove()
   }
 }
 export const shipsService = new ShipsService()

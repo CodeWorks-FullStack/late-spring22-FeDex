@@ -1,5 +1,6 @@
 import { ProxyState } from '../AppState.js'
 import { getShipForm } from '../Forms/Ship.js'
+import { packagesService } from '../Services/PackagesService.js'
 import { shipsService } from '../Services/ShipsService.js'
 import { logger } from '../Utils/Logger.js'
 
@@ -13,7 +14,11 @@ function _drawShips() {
 
 function _drawActiveShip() {
   const ship = ProxyState.activeShip
-  document.getElementById('ship-data').innerHTML = ship.DataTemplate
+  let template = '<h1>Unassigned Packages</h1>'
+  if (ship) {
+    template = ship.DataTemplate
+  }
+  document.getElementById('ship-data').innerHTML = template
 }
 
 export class ShipsController {
@@ -34,6 +39,7 @@ export class ShipsController {
   setActive(id) {
     try {
       shipsService.setActive(id)
+      packagesService.getAllPackages(id)
       bootstrap.Offcanvas.getOrCreateInstance('#ships-list').hide()
     } catch (error) {
       logger.error('[setActive]', error)

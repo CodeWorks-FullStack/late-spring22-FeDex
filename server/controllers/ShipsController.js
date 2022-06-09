@@ -1,5 +1,6 @@
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import Cat from 'catid'
+import { packagesService } from '../services/PackagesService.js'
 import { shipsService } from '../services/ShipsService'
 import BaseController from '../utils/BaseController'
 import { logger } from '../utils/Logger'
@@ -10,6 +11,7 @@ export class ShipsController extends BaseController {
     this.router
       .get('', this.getAll)
       .get('/:id', this.getById)
+      .get('/:id/packages', this.getPackagesByShipId)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
       .delete('/:id', this.remove)
@@ -36,6 +38,15 @@ export class ShipsController extends BaseController {
     }
   }
 
+  async getPackagesByShipId(req, res, next) {
+    try {
+      const packages = await packagesService.getAll({ shipId: req.params.id })
+      return res.send(packages)
+    } catch (error) {
+      next(error)
+    }
+  }
+
   async create(req, res, next) {
     try {
       req.body.creatorId = req.userInfo.id
@@ -53,7 +64,7 @@ export class ShipsController extends BaseController {
       const shipId = req.params.id
       const userId = req.userInfo.id
       await shipsService.remove(shipId, userId)
-      return res.send('That ship has been decomissioned')
+      return res.send('That ship has been decommissioned')
     } catch (error) {
       logger.log(error)
       next(error)
